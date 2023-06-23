@@ -6,18 +6,18 @@ const inputPassword = document.querySelector('[type="password"]');
 form.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
-    event.preventDefault();
-    
+  event.preventDefault();
   const {
     elements: { email, password }
   } = event.currentTarget;
-
   if (email.value === "" || password.value === "") {
    return alert("Усі поля повинні бути заповнені!");
   }
     
-  const resLogIn = {email, password};
-  console.log(resLogIn);
+  const resLogIn = {email: email.value, password: password.value};
+  
+  console.log(resLogIn)
+
   event.currentTarget.reset();
 }
 

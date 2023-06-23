@@ -10,13 +10,19 @@ const btnCreate = document.querySelector('#controls [data-create]');
 const btnDestroy = document.querySelector('#controls [data-destroy]');
 const mainDiv = document.querySelector('#boxes');
 
-btnCreate.addEventListener('click', () => { return createBoxes(inputEl.value); });
+btnCreate.addEventListener('click', () => { createBoxes(inputEl.value);});
 btnDestroy.addEventListener('click', destroyDivs);
 
 // ф-ція приймає кі-сть, визиває метод, який створює масив з обектами (divs)
 // і добавляє єлементи масиву в DOM
-function createBoxes(Amount) {
-  const arrayElements = createObj(Amount);
+function createBoxes(amount) {
+  if (Number(inputEl.value) < Number(inputEl.min)
+    || Number(inputEl.value) > Number(inputEl.max)) {
+    window.alert("Введіть число від 1 до 100");
+    return;
+  }
+  
+  const arrayElements = createObj(amount);
 
   arrayElements.forEach(function (el) {
     mainDiv.append(el);   
@@ -25,21 +31,18 @@ function createBoxes(Amount) {
 
   // ф-ція очищає усі елементи
   function destroyDivs() {
-  let list = document.querySelectorAll('.box');
-  list.forEach(e => e.remove());
-  inputEl.value = "";
-    
+    mainDiv.innerHTML = '';
+    inputEl.value = "";
 }
 
 // метод приймає кі-сть, скільки потрібно створити div, створює масив, 
 // в який кидає елементи з властивостями. Вертає масив з елементами
 
 function createObj(amount) {
-
   const elements = [];
   let sizeEl = 30;
 
-  for (let i = 1; i <= amount; i += 1) {
+  for (let i = 1; i <= amount; i += Number(inputEl.step)) {
     
     const newDiv = document.createElement("div");
     newDiv.style.width = String(sizeEl) + 'px';

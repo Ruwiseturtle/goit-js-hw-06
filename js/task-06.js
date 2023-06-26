@@ -7,7 +7,7 @@ inputEl.addEventListener('blur', () => {
                 inputEl.classList.add('valid');
                 inputEl.classList.remove('invalid');
             }
-            else if (str.length !== inputEl.getAttribute("data-length")){
+    else{
                 inputEl.classList.add('invalid');
                  inputEl.classList.remove('valid');
             }

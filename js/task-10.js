@@ -10,6 +10,8 @@ const btnCreate = document.querySelector('#controls [data-create]');
 const btnDestroy = document.querySelector('#controls [data-destroy]');
 const mainDiv = document.querySelector('#boxes');
 
+// console.dir(inputEl);
+
 btnCreate.addEventListener('click', () => { createBoxes(inputEl.value);});
 btnDestroy.addEventListener('click', destroyDivs);
 
@@ -23,10 +25,12 @@ function createBoxes(amount) {
   }
   
   const arrayElements = createObj(amount);
+  const markup = arrayElements.join("");
+  mainDiv.innerHTML += markup;
 
-  arrayElements.forEach(function (el) {
-    mainDiv.append(el);   
-  });
+  // arrayElements.forEach(function (el) {
+  //   mainDiv.append(el);   
+  // });
   } 
 
   // ф-ція очищає усі елементи
@@ -44,13 +48,16 @@ function createObj(amount) {
 
   for (let i = 1; i <= amount; i += Number(inputEl.step)) {
     
-    const newDiv = document.createElement("div");
-    newDiv.style.width = String(sizeEl) + 'px';
-    newDiv.style.height = String(sizeEl) + 'px';
-    newDiv.style.background = getRandomHexColor();
-    newDiv.classList.add('box');
-    elements.push(newDiv);
+    // const newDiv = document.createElement("div");
+    // newDiv.style.width = String(sizeEl) + 'px';
+    // newDiv.style.height = String(sizeEl) + 'px';
+    // newDiv.style.background = getRandomHexColor();
+    // newDiv.classList.add('box');
+    // elements.push(newDiv);
     
+    let strDiv = `<div class="box" style="background-color: ${getRandomHexColor()}; width: ${sizeEl}px; height: ${sizeEl}px"></div>`;
+    elements.push(strDiv);
+
     sizeEl += 10;
   }
   return elements;
